@@ -17,12 +17,14 @@
         </div>
 
         <button onclick="generateQR()">Generate QR Code</button>
+        <button id="downloadQR" disabled>Download QR Code</button>
     </div>
     <script>
 
         let imgBox = document.getElementById("imgBox");
         let qrImage = document.getElementById("qrImage");
         let qrText = document.getElementById("qrText");
+        let downloadQR = document.getElementById("downloadQR");
 
 
         function generateQR(){
@@ -37,6 +39,29 @@
             }
             
         }
+
+        downloadQR.addEventListener('click', function() {
+        let imageSrc = qrImage.src;
+        let a = document.createElement('a');
+        a.href = imageSrc;
+        a.click();
+
+    });
+
+
+    function generateQR(){
+    if(qrText.value.length > 0){
+        qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
+        imgBox.classList.add("show-img");
+        downloadQR.disabled = false; // Enable the download button
+
+    } else {
+        downloadQR.disabled = true; // Disable the download button
+    }
+}
+
+
+
     </script>
 </body>
 </html>
