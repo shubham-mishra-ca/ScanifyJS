@@ -31,11 +31,13 @@
             if(qrText.value.length > 0){
                 qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
                 imgBox.classList.add("show-img");
+                downloadQR.disabled = false;
             }else{
                 qrText.classList.add("error");
                 setTimeout(() => {
                     qrText.classList.remove("error");
                 }, 1000);
+                downloadQR.disabled = true;
             }
             
         }
@@ -47,20 +49,6 @@
         a.click();
 
     });
-
-
-    function generateQR(){
-    if(qrText.value.length > 0){
-        qrImage.src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + qrText.value;
-        imgBox.classList.add("show-img");
-        downloadQR.disabled = false; // Enable the download button
-
-    } else {
-        downloadQR.disabled = true; // Disable the download button
-    }
-}
-
-
 
     </script>
 </body>
